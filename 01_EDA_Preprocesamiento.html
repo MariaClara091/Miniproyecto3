@@ -1,0 +1,1582 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Bloque 1: Análisis Exploratorio &#8212; Segmentación de Imágenes Biomédicas y Clasificación de Texto NLP</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_EDA_Preprocesamiento';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bloque 1: Modelos Entrenamiento" href="02_Modelos_Entrenamiento.html" />
+    <link rel="prev" title="Proyecto Integrador de Aprendizaje Automático" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyecto Integrador de Aprendizaje Automático
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bloque 1: Análisis Exploratorio</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_Modelos_Entrenamiento.html">Bloque 1: Modelos Entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_nlp.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F01_EDA_Preprocesamiento.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_EDA_Preprocesamiento.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bloque 1: Análisis Exploratorio</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bloque 1: Análisis Exploratorio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sartorius-cell-instance-segmentation">Sartorius Cell Instance Segmentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-imagenes">Preprocesamiento de Imágenes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion">Normalización</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-y-preprocesamiento">Conclusiones del EDA y Preprocesamiento</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bloque-1-analisis-exploratorio">
+<h1>Bloque 1: Análisis Exploratorio<a class="headerlink" href="#bloque-1-analisis-exploratorio" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sartorius-cell-instance-segmentation">
+<h1>Sartorius Cell Instance Segmentation<a class="headerlink" href="#sartorius-cell-instance-segmentation" title="Permalink to this heading">#</a></h1>
+<p>Este notebook presenta el análisis exploratorio y el pipeline de preprocesamiento implementado sobre el dataset Sartorius Cell Instance Segmentation para tareas de segmentación celular mediante Deep Learning.</p>
+<p>Los objetivos principales son:</p>
+<ul class="simple">
+<li><p>comprender la estructura del dataset,</p></li>
+<li><p>analizar la distribución celular,</p></li>
+<li><p>estudiar variabilidad morfológica,</p></li>
+<li><p>identificar posibles desbalances,</p></li>
+<li><p>construir máscaras a partir de anotaciones RLE,</p></li>
+<li><p>y preparar las imágenes para entrenamiento profundo.</p></li>
+</ul>
+<p>El dataset Sartorius Cell Instance Segmentation contiene imágenes microscópicas anotadas para tareas de segmentación celular.</p>
+<p>Cada muestra incluye:</p>
+<ul class="simple">
+<li><p>identificador de imagen,</p></li>
+<li><p>dimensiones espaciales,</p></li>
+<li><p>tipo celular,</p></li>
+<li><p>anotaciones RLE (Run Length Encoding).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># ── Ruta del dataset ──────────────────────────────────────────────</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2\mini3\Bloque1\data\sartorius-cell-instance-segmentation&quot;</span>
+<span class="n">TRAIN_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="n">CSV_PATH</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── Verificación ──────────────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¿Existe train/?&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">TRAIN_DIR</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¿Existe train.csv?&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">CSV_PATH</span><span class="p">))</span>
+
+<span class="n">imagenes</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">TRAIN_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total imágenes en train/: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">imagenes</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Primeras 5:&quot;</span><span class="p">,</span> <span class="n">imagenes</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>¿Existe train/? True
+¿Existe train.csv? True
+Total imágenes en train/: 606
+Primeras 5: [&#39;0030fd0e6378.png&#39;, &#39;0140b3c8f445.png&#39;, &#39;01ae5a43a2ab.png&#39;, &#39;026b3c2c4b32.png&#39;, &#39;029e5b3b89c7.png&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Carga del CSV de anotaciones ──────────────────────────────────</span>
+<span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CSV_PATH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape del CSV:&quot;</span><span class="p">,</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Columnas:&quot;</span><span class="p">,</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Primeras filas:&quot;</span><span class="p">)</span>
+<span class="n">df_raw</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape del CSV: (73585, 9)
+
+Columnas: [&#39;id&#39;, &#39;annotation&#39;, &#39;width&#39;, &#39;height&#39;, &#39;cell_type&#39;, &#39;plate_time&#39;, &#39;sample_date&#39;, &#39;sample_id&#39;, &#39;elapsed_timedelta&#39;]
+
+Primeras filas:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>annotation</th>
+      <th>width</th>
+      <th>height</th>
+      <th>cell_type</th>
+      <th>plate_time</th>
+      <th>sample_date</th>
+      <th>sample_id</th>
+      <th>elapsed_timedelta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0030fd0e6378</td>
+      <td>118145 6 118849 7 119553 8 120257 8 120961 9 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0030fd0e6378</td>
+      <td>189036 1 189739 3 190441 6 191144 7 191848 8 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0030fd0e6378</td>
+      <td>173567 3 174270 5 174974 5 175678 6 176382 7 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0030fd0e6378</td>
+      <td>196723 4 197427 6 198130 7 198834 8 199538 8 2...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0030fd0e6378</td>
+      <td>167818 3 168522 5 169225 7 169928 8 170632 9 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0030fd0e6378</td>
+      <td>205984 2 206687 4 207391 5 208095 5 208799 6 2...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0030fd0e6378</td>
+      <td>203101 2 203805 5 204509 7 205213 10 205917 12...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0030fd0e6378</td>
+      <td>191900 2 192604 3 193308 4 194012 5 194717 5 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0030fd0e6378</td>
+      <td>184848 3 185551 5 186254 7 186958 8 187662 9 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0030fd0e6378</td>
+      <td>165119 1 165822 4 166526 6 167230 9 167935 9 1...</td>
+      <td>704</td>
+      <td>520</td>
+      <td>shsy5y</td>
+      <td>11h30m00s</td>
+      <td>2019-06-16</td>
+      <td>shsy5y[diff]_E10-4_Vessel-714_Ph_3</td>
+      <td>0 days 11:30:00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Exploración inicial del CSV ───────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipos de célula únicos:&quot;</span><span class="p">,</span> <span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribución por tipo de célula:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">)[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;n_imagenes&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">¿Hay nulos en annotation?:&quot;</span><span class="p">,</span> <span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Ejemplo de RLE:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">80</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tipos de célula únicos: [&#39;shsy5y&#39; &#39;astro&#39; &#39;cort&#39;]
+
+Distribución por tipo de célula:
+cell_type
+astro     131
+cort      320
+shsy5y    155
+Name: n_imagenes, dtype: int64
+
+¿Hay nulos en annotation?: 0
+
+Ejemplo de RLE:
+118145 6 118849 7 119553 8 120257 8 120961 9 121665 10 122369 12 123074 13 12377 ...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># ajusta esto a tu ruta real del dataset</span>
+<span class="n">DATASET_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../data/sartorius-cell-instance-segmentation/train&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">image_id</span><span class="p">):</span>
+
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_id</span><span class="si">}</span><span class="s2">.png&quot;</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">image_path</span><span class="p">))</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">img</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rle_decode</span><span class="p">(</span><span class="n">rle_string</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">rle_string</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    
+    <span class="n">nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">rle_string</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">lengths</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+            <span class="n">pixel</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">pixel</span> <span class="o">//</span> <span class="n">width</span>     <span class="c1"># ← invertido</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">pixel</span> <span class="o">%</span> <span class="n">width</span>      <span class="c1"># ← invertido</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="ow">and</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">:</span>
+                <span class="n">mask</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">mask</span>
+
+<span class="c1"># ── Verificar ────────────────────────────────────────────────────</span>
+<span class="n">fila</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mascara</span> <span class="o">=</span> <span class="n">rle_decode</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">])</span>
+
+<span class="n">rows_activos</span><span class="p">,</span> <span class="n">cols_activos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mascara</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Filas únicas:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">rows_activos</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cols únicas:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cols_activos</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Píxeles activos:&quot;</span><span class="p">,</span> <span class="n">mascara</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Imagen original&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mascara</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Máscara corregida&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas únicas: [167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
+ 185 186 187 188 189 190 191 192 193 194 195 196]
+Cols únicas: [576 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593
+ 594 595 596 597 598 599 600 601 602]
+Píxeles activos: 498
+</pre></div>
+</div>
+<img alt="_images/f85f29491f958f893b2f1cffa0bf963fb9eb73c47773434b26c0d8c8771d76b8.png" src="_images/f85f29491f958f893b2f1cffa0bf963fb9eb73c47773434b26c0d8c8771d76b8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Overlay completo con la función corregida ─────────────────────</span>
+<span class="k">def</span> <span class="nf">get_all_masks</span><span class="p">(</span><span class="n">img_id</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">img_id</span><span class="p">]</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+    <span class="n">masks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">rle_decode</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">],</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="n">masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">masks</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span>
+
+<span class="k">def</span> <span class="nf">overlay_masks</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">masks</span><span class="p">):</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">masks</span><span class="p">:</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">overlay</span><span class="p">[</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlay</span><span class="p">[</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="n">color</span> <span class="o">*</span> <span class="mf">0.7</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">overlay</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># ── Visualizar las 5 imágenes obligatorias del EDA ───────────────</span>
+<span class="n">img_ids</span> <span class="o">=</span> <span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">img_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">img_ids</span><span class="p">):</span>
+    <span class="n">masks</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">get_all_masks</span><span class="p">(</span><span class="n">img_id</span><span class="p">,</span> <span class="n">df_raw</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">img_id</span><span class="p">)</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay_masks</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">masks</span><span class="p">)</span>
+    
+    <span class="n">cell_type</span> <span class="o">=</span> <span class="n">df_raw</span><span class="p">[</span><span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">img_id</span><span class="p">][</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Original — </span><span class="si">{</span><span class="n">cell_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">overlay</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Máscaras superpuestas — </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">masks</span><span class="p">)</span><span class="si">}</span><span class="s1"> células&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Visualización cualitativa — 5 imágenes con instancias&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7dc39f36d5442486162e65a1e8839d325c39f5e8d127a6c8ee42c2999ee37f27.png" src="_images/7dc39f36d5442486162e65a1e8839d325c39f5e8d127a6c8ee42c2999ee37f27.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Celda 5: Dataframe estructurado obligatorio ───────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Construyendo dataframe estructurado&quot;</span><span class="p">)</span>
+
+<span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">img_id</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;height&#39;</span><span class="p">]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+    <span class="n">cell_type</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span>
+    <span class="n">n_masks</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    
+    <span class="n">areas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+        <span class="n">area</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># suma de lengths del RLE = área en píxeles</span>
+        <span class="n">areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+    
+    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;id_imagen&#39;</span>   <span class="p">:</span> <span class="n">img_id</span><span class="p">,</span>
+        <span class="s1">&#39;ruta_imagen&#39;</span> <span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TRAIN_DIR</span><span class="si">}</span><span class="se">\\</span><span class="si">{</span><span class="n">img_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;cell_type&#39;</span>   <span class="p">:</span> <span class="n">cell_type</span><span class="p">,</span>
+        <span class="s1">&#39;height&#39;</span>      <span class="p">:</span> <span class="n">h</span><span class="p">,</span>
+        <span class="s1">&#39;width&#39;</span>       <span class="p">:</span> <span class="n">w</span><span class="p">,</span>
+        <span class="s1">&#39;n_celulas&#39;</span>   <span class="p">:</span> <span class="n">n_masks</span><span class="p">,</span>
+        <span class="s1">&#39;area_total&#39;</span>  <span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">areas</span><span class="p">),</span>
+        <span class="s1">&#39;area_media&#39;</span>  <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">areas</span><span class="p">),</span>
+        <span class="s1">&#39;area_min&#39;</span>    <span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">areas</span><span class="p">),</span>
+        <span class="s1">&#39;area_max&#39;</span>    <span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">areas</span><span class="p">),</span>
+    <span class="p">})</span>
+
+<span class="n">df_images</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataframe listo: </span><span class="si">{</span><span class="n">df_images</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribución por tipo de célula:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">)[</span><span class="s1">&#39;n_celulas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">df_images</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Construyendo dataframe estructurado
+Dataframe listo: (606, 10)
+
+Distribución por tipo de célula:
+           count   mean    std   min    25%    50%    75%    max
+cell_type                                                       
+astro      131.0   80.3   64.1   5.0   50.0   73.0  100.0  594.0
+cort       320.0   33.7   16.5   4.0   23.0   30.0   39.0  108.0
+shsy5y     155.0  337.3  149.6  49.0  235.5  324.0  429.0  790.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_imagen</th>
+      <th>ruta_imagen</th>
+      <th>cell_type</th>
+      <th>height</th>
+      <th>width</th>
+      <th>n_celulas</th>
+      <th>area_total</th>
+      <th>area_media</th>
+      <th>area_min</th>
+      <th>area_max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0030fd0e6378</td>
+      <td>C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2...</td>
+      <td>shsy5y</td>
+      <td>520</td>
+      <td>704</td>
+      <td>395</td>
+      <td>113307</td>
+      <td>286.853165</td>
+      <td>46</td>
+      <td>757</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0140b3c8f445</td>
+      <td>C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2...</td>
+      <td>astro</td>
+      <td>520</td>
+      <td>704</td>
+      <td>108</td>
+      <td>86735</td>
+      <td>803.101852</td>
+      <td>138</td>
+      <td>7126</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>01ae5a43a2ab</td>
+      <td>C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2...</td>
+      <td>cort</td>
+      <td>520</td>
+      <td>704</td>
+      <td>36</td>
+      <td>11382</td>
+      <td>316.166667</td>
+      <td>149</td>
+      <td>522</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>026b3c2c4b32</td>
+      <td>C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2...</td>
+      <td>cort</td>
+      <td>520</td>
+      <td>704</td>
+      <td>42</td>
+      <td>7660</td>
+      <td>182.380952</td>
+      <td>84</td>
+      <td>355</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>029e5b3b89c7</td>
+      <td>C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2...</td>
+      <td>cort</td>
+      <td>520</td>
+      <td>704</td>
+      <td>34</td>
+      <td>5753</td>
+      <td>169.205882</td>
+      <td>107</td>
+      <td>277</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Celda 6: EDA cuantitativo completo ───────────────────────────</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;EDA — Sartorius Cell Instance Segmentation&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.01</span><span class="p">)</span>
+
+<span class="n">colores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">:</span> <span class="s1">&#39;#E05A2B&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">:</span> <span class="s1">&#39;#3B82C4&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">:</span> <span class="s1">&#39;#2EAA6E&#39;</span><span class="p">}</span>
+
+<span class="c1"># ── 1. Histograma de alturas ──────────────────────────────────────</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">):</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de alturas&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Height (px)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 2. Histograma de anchos ───────────────────────────────────────</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de anchos&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Width (px)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 3. Scatter alto vs ancho ──────────────────────────────────────</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">):</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Alto vs Ancho&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Width (px)&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Height (px)&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 4. Histograma número de células por imagen ────────────────────</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">):</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;n_celulas&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Número de células por imagen&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;N° células&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 5. Boxplot número de células por tipo ─────────────────────────</span>
+<span class="n">ax5</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">data_box</span> <span class="o">=</span> <span class="p">[</span><span class="n">df_images</span><span class="p">[</span><span class="n">df_images</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ct</span><span class="p">][</span><span class="s1">&#39;n_celulas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> 
+            <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]]</span>
+<span class="n">bp</span> <span class="o">=</span> <span class="n">ax5</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data_box</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">],</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">patch</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bp</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]):</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot — células por imagen&#39;</span><span class="p">)</span>
+<span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;N° células&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 6. Histograma de áreas ────────────────────────────────────────</span>
+<span class="n">ax6</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">):</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;area_media&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de área media por célula&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Área media (px²)&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">ax6</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 7. Boxplot de áreas ───────────────────────────────────────────</span>
+<span class="n">ax7</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">data_area</span> <span class="o">=</span> <span class="p">[</span><span class="n">df_images</span><span class="p">[</span><span class="n">df_images</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ct</span><span class="p">][</span><span class="s1">&#39;area_media&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> 
+             <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]]</span>
+<span class="n">bp2</span> <span class="o">=</span> <span class="n">ax7</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data_area</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">],</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">patch</span><span class="p">,</span> <span class="n">ct</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bp2</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]):</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">])</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boxplot — área media por célula&#39;</span><span class="p">)</span>
+<span class="n">ax7</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Área media (px²)&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 8. Intensidad de píxeles por tipo de célula ───────────────────</span>
+<span class="n">ax8</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculando intensidades&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]:</span>
+    <span class="n">sample_ids</span> <span class="o">=</span> <span class="n">df_images</span><span class="p">[</span><span class="n">df_images</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ct</span><span class="p">][</span><span class="s1">&#39;id_imagen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">intensidades</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">img_id</span> <span class="ow">in</span> <span class="n">sample_ids</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TRAIN_DIR</span><span class="si">}</span><span class="se">\\</span><span class="si">{</span><span class="n">img_id</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">))</span>
+        <span class="n">intensidades</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">ax8</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">intensidades</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ct</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax8</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribución de intensidad de píxeles&#39;</span><span class="p">)</span>
+<span class="n">ax8</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Intensidad (0-255)&#39;</span><span class="p">)</span>
+<span class="n">ax8</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Densidad&#39;</span><span class="p">)</span>
+<span class="n">ax8</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># ── 9. Conteo de imágenes por tipo ───────────────────────────────</span>
+<span class="n">ax9</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="n">conteos</span> <span class="o">=</span> <span class="n">df_images</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax9</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">conteos</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">conteos</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+               <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">colores</span><span class="p">[</span><span class="n">ct</span><span class="p">]</span> <span class="k">for</span> <span class="n">ct</span> <span class="ow">in</span> <span class="n">conteos</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">conteos</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">ax9</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> 
+             <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax9</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Imágenes por tipo de célula&#39;</span><span class="p">)</span>
+<span class="n">ax9</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;N° imágenes&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;EDA_completo.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Figura guardada como EDA_completo.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\maria\AppData\Local\Temp\ipykernel_33808\620900735.py:47: MatplotlibDeprecationWarning: The &#39;labels&#39; parameter of boxplot() has been renamed &#39;tick_labels&#39; since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = ax5.boxplot(data_box, labels=[&#39;shsy5y&#39;, &#39;astro&#39;, &#39;cort&#39;], patch_artist=True)
+C:\Users\maria\AppData\Local\Temp\ipykernel_33808\620900735.py:67: MatplotlibDeprecationWarning: The &#39;labels&#39; parameter of boxplot() has been renamed &#39;tick_labels&#39; since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp2 = ax7.boxplot(data_area, labels=[&#39;shsy5y&#39;, &#39;astro&#39;, &#39;cort&#39;], patch_artist=True)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculando intensidades
+</pre></div>
+</div>
+<img alt="_images/6869cd51fdd21293ec446e1eb8f52feb938547c65a7cfac9e5773e38f0b1d248.png" src="_images/6869cd51fdd21293ec446e1eb8f52feb938547c65a7cfac9e5773e38f0b1d248.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Figura guardada como EDA_completo.png
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>¿Las imágenes son homogéneas o muy variables?</p></li>
+</ol>
+<p>Todas las imágenes tienen exactamente 520 x 704 px sin excepción. Esto simplifica el preprocesamiento ya que no se requiere manejo de tamaños variables. Sin embargo, son HETEROGÉNEAS en contenido: el número de células por imagen varía drásticamente entre tipos (shsy5y: hasta 790, cort: máximo 108).</p>
+<ol class="arabic simple" start="2">
+<li><p>¿Existe desbalance en número de células?</p></li>
+</ol>
+<p>Sí hay desbalance en dos niveles:
+• A nivel de imágenes: cort domina con 320 imágenes (52.8%),
+seguido de shsy5y (155, 25.6%) y astro (131, 21.6%).
+• A nivel de instancias por imagen:
+- shsy5y: media 337 células/imagen (muy denso)
+- astro:  media  80 células/imagen (densidad media)
+- cort:   media  34 células/imagen (muy disperso)
+Este desbalance requiere atención en el entrenamiento.</p>
+<ol class="arabic simple" start="3">
+<li><p>¿Las células son pequeñas o grandes?</p></li>
+</ol>
+<p>Depende del tipo:
+• astro:  las MÁS GRANDES (área media ~900-1000 px²),
+con alta varianza y outliers hasta 2500 px².
+• cort:   tamaño MEDIO (~300 px²), formas redondeadas compactas.
+• shsy5y: las MÁS PEQUEÑAS (~300 px²) pero muy numerosas,
+con formas alargadas e irregulares.</p>
+<ol class="arabic simple" start="4">
+<li><p>¿Hay ruido o artefactos?</p></li>
+</ol>
+<p>La distribución de intensidad está concentrada en 120-150 (escala de grises media), indicando contraste bajo y uniforme típico de microscopía de contraste de fase. No se observan artefactos evidentes en las 5 imágenes inspeccionadas visualmente.
+El bajo contraste entre células y fondo es el principal desafío: las células son casi del mismo tono que el fondo, lo que hace que la segmentación sea no trivial. Las células cort presentan puntos oscuros (núcleos) visibles que pueden facilitar su detección individual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Estadísticas de respaldo ──────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estadísticas de tamaño de imágenes:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_images</span><span class="p">[[</span><span class="s1">&#39;height&#39;</span><span class="p">,</span><span class="s1">&#39;width&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas de células por imagen por tipo:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">)[</span><span class="s1">&#39;n_celulas&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Estadísticas de área media por tipo:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_images</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cell_type&#39;</span><span class="p">)[</span><span class="s1">&#39;area_media&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estadísticas de tamaño de imágenes:
+       height  width
+count   606.0  606.0
+mean    520.0  704.0
+std       0.0    0.0
+min     520.0  704.0
+25%     520.0  704.0
+50%     520.0  704.0
+75%     520.0  704.0
+max     520.0  704.0
+
+Estadísticas de células por imagen por tipo:
+           count   mean    std   min    25%    50%    75%    max
+cell_type                                                       
+astro      131.0   80.3   64.1   5.0   50.0   73.0  100.0  594.0
+cort       320.0   33.7   16.5   4.0   23.0   30.0   39.0  108.0
+shsy5y     155.0  337.3  149.6  49.0  235.5  324.0  429.0  790.0
+
+Estadísticas de área media por tipo:
+           count    mean    std    min    25%    50%     75%     max
+cell_type                                                           
+astro      131.0  1015.1  425.3  410.5  688.6  914.7  1190.4  2446.6
+cort       320.0   246.2   86.6   86.8  183.8  228.6   295.8   596.9
+shsy5y     155.0   241.8   75.0  113.8  190.8  224.3   286.0   559.3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preprocesamiento-de-imagenes">
+<h1>Preprocesamiento de Imágenes<a class="headerlink" href="#preprocesamiento-de-imagenes" title="Permalink to this heading">#</a></h1>
+<p>Luego del análisis exploratorio, se implementó un pipeline de preprocesamiento para preparar las imágenes para entrenamiento profundo.</p>
+<p>El pipeline incluye:</p>
+<ul class="simple">
+<li><p>normalización,</p></li>
+<li><p>resize,</p></li>
+<li><p>augmentations geométricas,</p></li>
+<li><p>augmentations fotométricas.</p></li>
+</ul>
+<p>Estas transformaciones permiten mejorar estabilidad y capacidad de generalización de los modelos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">albumentations</span> <span class="k">as</span> <span class="nn">A</span>
+<span class="kn">from</span> <span class="nn">albumentations.pytorch</span> <span class="kn">import</span> <span class="n">ToTensorV2</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># ── Rutas ─────────────────────────────────────────────────────────</span>
+<span class="n">DATA_DIR</span>  <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\maria\OneDrive\Desktop\DEEP_LEARNING2\mini3\Bloque1\data\sartorius-cell-instance-segmentation&quot;</span>
+<span class="n">TRAIN_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="n">CSV_PATH</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;train.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── Cargar CSV ────────────────────────────────────────────────────</span>
+<span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CSV_PATH</span><span class="p">)</span>
+
+<span class="c1"># ── Función RLE corregida (la que funcionó) ───────────────────────</span>
+<span class="k">def</span> <span class="nf">rle_decode</span><span class="p">(</span><span class="n">rle_string</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">rle_string</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">rle_string</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">lengths</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+            <span class="n">pixel</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">pixel</span> <span class="o">//</span> <span class="n">width</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">pixel</span> <span class="o">%</span> <span class="n">width</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">height</span> <span class="ow">and</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">:</span>
+                <span class="n">mask</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">mask</span>
+
+<span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">img_id</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TRAIN_DIR</span><span class="p">,</span> <span class="n">img_id</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_combined_mask</span><span class="p">(</span><span class="n">img_id</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retorna máscara combinada (todas las instancias en una sola matriz).&quot;&quot;&quot;</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">img_id</span><span class="p">]</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+    <span class="n">combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>  <span class="c1"># ← uint16 aguanta hasta 65535</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">rle_decode</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">],</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="n">combined</span><span class="p">[</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
+    <span class="k">return</span> <span class="n">combined</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Librerías cargadas OK&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Albumentations version:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Librerías cargadas OK
+Albumentations version: 2.0.8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="normalizacion">
+<h1>Normalización<a class="headerlink" href="#normalizacion" title="Permalink to this heading">#</a></h1>
+<p>Las imágenes fueron normalizadas al rango [0,1] con el objetivo de:</p>
+<ul class="simple">
+<li><p>mejorar estabilidad numérica,</p></li>
+<li><p>acelerar convergencia,</p></li>
+<li><p>facilitar entrenamiento profundo,</p></li>
+<li><p>reducir sensibilidad a variaciones de intensidad.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Celda 2: Normalización y redimensionamiento ───────────────────</span>
+<span class="n">IMG_SIZE</span> <span class="o">=</span> <span class="mi">512</span>  <span class="c1"># 512x512 como definimos en el plan</span>
+
+<span class="k">def</span> <span class="nf">preprocess_image</span><span class="p">(</span><span class="n">img_array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normaliza y redimensiona imagen.&quot;&quot;&quot;</span>
+    <span class="n">img_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">IMG_SIZE</span><span class="p">)))</span>
+    <span class="n">img_normalized</span> <span class="o">=</span> <span class="n">img_resized</span> <span class="o">/</span> <span class="mf">255.0</span>
+    <span class="k">return</span> <span class="n">img_normalized</span>
+
+<span class="k">def</span> <span class="nf">preprocess_mask</span><span class="p">(</span><span class="n">mask_array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Redimensiona máscara preservando valores de instancia.&quot;&quot;&quot;</span>
+    <span class="n">mask_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">mask_array</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">IMG_SIZE</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span>
+    <span class="p">))</span>
+    <span class="k">return</span> <span class="n">mask_resized</span>
+
+<span class="c1"># ── Probar con una imagen ─────────────────────────────────────────</span>
+<span class="n">img_id</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="n">img_original</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">img_id</span><span class="p">)</span>
+<span class="n">mask_original</span> <span class="o">=</span> <span class="n">get_combined_mask</span><span class="p">(</span><span class="n">img_id</span><span class="p">,</span> <span class="n">df_raw</span><span class="p">)</span>
+
+<span class="n">img_processed</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">img_original</span><span class="p">)</span>
+<span class="n">mask_processed</span> <span class="o">=</span> <span class="n">preprocess_mask</span><span class="p">(</span><span class="n">mask_original</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;── Original ──────────────────────────────&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Imagen shape:  </span><span class="si">{</span><span class="n">img_original</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  | dtype: </span><span class="si">{</span><span class="n">img_original</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Imagen rango:  [</span><span class="si">{</span><span class="n">img_original</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">img_original</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Máscara shape: </span><span class="si">{</span><span class="n">mask_original</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> | instancias: </span><span class="si">{</span><span class="n">mask_original</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">── Procesada ─────────────────────────────&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Imagen shape:  </span><span class="si">{</span><span class="n">img_processed</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  | dtype: </span><span class="si">{</span><span class="n">img_processed</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Imagen rango:  [</span><span class="si">{</span><span class="n">img_processed</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">img_processed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Máscara shape: </span><span class="si">{</span><span class="n">mask_processed</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> | instancias: </span><span class="si">{</span><span class="n">mask_processed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── Original ──────────────────────────────
+  Imagen shape:  (520, 704, 3)  | dtype: uint8
+  Imagen rango:  [3, 255]
+  Máscara shape: (520, 704) | instancias: 395
+
+── Procesada ─────────────────────────────
+  Imagen shape:  (512, 512, 3)  | dtype: float64
+  Imagen rango:  [0.000, 0.949]
+  Máscara shape: (512, 512) | instancias: 395
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transform_train</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">HorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">VerticalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">RandomRotate90</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">ShiftScaleRotate</span><span class="p">(</span><span class="n">shift_limit</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">scale_limit</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rotate_limit</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">RandomScale</span><span class="p">(</span><span class="n">scale_limit</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span>       <span class="c1"># ← zoom corregido</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">ElasticTransform</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">RandomBrightnessContrast</span><span class="p">(</span><span class="n">brightness_limit</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">contrast_limit</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="n">img_uint8</span>    <span class="o">=</span> <span class="n">img_original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mask_binaria</span> <span class="o">=</span> <span class="p">(</span><span class="n">mask_original</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">augmented</span> <span class="o">=</span> <span class="n">transform_train</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">img_uint8</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_binaria</span><span class="p">)</span>
+<span class="n">img_aug</span>   <span class="o">=</span> <span class="n">augmented</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+<span class="n">mask_aug</span>  <span class="o">=</span> <span class="n">augmented</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Imagen augmentada:&quot;</span><span class="p">,</span> <span class="n">img_aug</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| rango:&quot;</span><span class="p">,</span> <span class="n">img_aug</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">img_aug</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Máscara augmentada:&quot;</span><span class="p">,</span> <span class="n">mask_aug</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;| valores únicos:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">mask_aug</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Imagen augmentada: (520, 704, 3) | rango: 3 - 255
+Máscara augmentada: (520, 704) | valores únicos: [0 1]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\maria\miniconda3\envs\ml_venv\lib\site-packages\albumentations\core\validation.py:114: UserWarning: ShiftScaleRotate is a special case of Affine transform. Please use Affine transform instead.
+  original_init(self, **validated_kwargs)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Celda 4: Comparación visual obligatoria ───────────────────────</span>
+<span class="c1"># Pipeline completo: augmentation → resize → normalización</span>
+<span class="k">def</span> <span class="nf">full_pipeline</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+    <span class="c1"># 1. Augmentation</span>
+    <span class="n">augmented</span>  <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+    <span class="n">img_aug</span>    <span class="o">=</span> <span class="n">augmented</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+    <span class="n">mask_aug</span>   <span class="o">=</span> <span class="n">augmented</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span>
+    <span class="c1"># 2. Resize</span>
+    <span class="n">img_resized</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_aug</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)))</span>
+    <span class="n">mask_resized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">mask_aug</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">))</span>
+    <span class="c1"># 3. Normalización</span>
+    <span class="n">img_norm</span> <span class="o">=</span> <span class="n">img_resized</span> <span class="o">/</span> <span class="mf">255.0</span>
+    <span class="k">return</span> <span class="n">img_resized</span><span class="p">,</span> <span class="n">img_norm</span><span class="p">,</span> <span class="n">mask_resized</span>
+
+<span class="n">img_uint8</span>    <span class="o">=</span> <span class="n">img_original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">mask_binaria</span> <span class="o">=</span> <span class="p">(</span><span class="n">mask_original</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Generar 4 versiones augmentadas distintas</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Comparación visual — original vs preprocesado con augmentation&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="c1"># Columna 0: original</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_original</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original</span><span class="se">\n</span><span class="s1">(520x704)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">preprocess_image</span><span class="p">(</span><span class="n">img_original</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Normalizada</span><span class="se">\n</span><span class="s1">(512x512)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask_binaria</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Máscara</span><span class="se">\n</span><span class="s1">original&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Columnas 1-4: augmentaciones</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">seed</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seeds</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">img_r</span><span class="p">,</span> <span class="n">img_n</span><span class="p">,</span> <span class="n">mask_r</span> <span class="o">=</span> <span class="n">full_pipeline</span><span class="p">(</span><span class="n">img_uint8</span><span class="p">,</span> <span class="n">mask_binaria</span><span class="p">,</span> <span class="n">transform_train</span><span class="p">)</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_r</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Aug </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="se">\n</span><span class="s1">(img uint8)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_n</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Aug </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="se">\n</span><span class="s1">(normalizada)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask_r</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Aug </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="se">\n</span><span class="s1">(máscara sync)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;preprocesamiento_comparacion.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Figura guardada como preprocesamiento_comparacion.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a537c7504502701b2add275798c54f95cd0d3e4648315d76c4cf5800e3eaa550.png" src="_images/a537c7504502701b2add275798c54f95cd0d3e4648315d76c4cf5800e3eaa550.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Figura guardada como preprocesamiento_comparacion.png
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Celda 5: Dataset PyTorch reutilizable ─────────────────────────</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="k">class</span> <span class="nc">SartoriusDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_ids</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">train_dir</span><span class="p">,</span> <span class="n">img_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span>   <span class="o">=</span> <span class="n">img_ids</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span>        <span class="o">=</span> <span class="n">df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_dir</span> <span class="o">=</span> <span class="n">train_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span>  <span class="o">=</span> <span class="n">img_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span>      <span class="o">=</span> <span class="n">mode</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">img_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        
+        <span class="c1"># Cargar imagen</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dir</span><span class="p">,</span> <span class="n">img_id</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">))</span>
+        
+        <span class="c1"># Cargar máscara combinada</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">img_id</span><span class="p">]</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;height&#39;</span><span class="p">],</span> <span class="n">rows</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;width&#39;</span><span class="p">]</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">rle_decode</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">],</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="n">mask</span><span class="p">[</span><span class="n">m</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">mask_binary</span> <span class="o">=</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+        <span class="c1"># Augmentation sincronizada</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">:</span>
+            <span class="n">aug</span>     <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask_binary</span><span class="p">)</span>
+            <span class="n">img</span>     <span class="o">=</span> <span class="n">aug</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+            <span class="n">mask_binary</span> <span class="o">=</span> <span class="n">aug</span><span class="p">[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Resize + normalización</span>
+        <span class="n">img</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">)))</span>
+        <span class="n">mask_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">mask_binary</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span>
+                          <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_size</span><span class="p">),</span> <span class="n">resample</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">NEAREST</span><span class="p">))</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">/</span> <span class="mf">255.0</span>
+
+        <span class="c1"># A tensor</span>
+        <span class="n">img_tensor</span>  <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># C,H,W</span>
+        <span class="n">mask_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">mask_binary</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">img_tensor</span><span class="p">,</span> <span class="n">mask_tensor</span>
+
+<span class="c1"># ── Split 70/15/15 ────────────────────────────────────────────────</span>
+<span class="n">all_ids</span> <span class="o">=</span> <span class="n">df_raw</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">train_ids</span><span class="p">,</span> <span class="n">temp_ids</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">all_ids</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">val_ids</span><span class="p">,</span>   <span class="n">test_ids</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">temp_ids</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train:      </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_ids</span><span class="p">)</span><span class="si">}</span><span class="s2"> imágenes (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_ids</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">all_ids</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">val_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">  imágenes (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">val_ids</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">all_ids</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test:       </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span><span class="si">}</span><span class="s2">  imágenes (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">all_ids</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── Verificar que el Dataset funciona ─────────────────────────────</span>
+<span class="n">ds_train</span> <span class="o">=</span> <span class="n">SartoriusDataset</span><span class="p">(</span><span class="n">train_ids</span><span class="p">,</span> <span class="n">df_raw</span><span class="p">,</span> <span class="n">TRAIN_DIR</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform_train</span><span class="p">)</span>
+<span class="n">ds_val</span>   <span class="o">=</span> <span class="n">SartoriusDataset</span><span class="p">(</span><span class="n">val_ids</span><span class="p">,</span>   <span class="n">df_raw</span><span class="p">,</span> <span class="n">TRAIN_DIR</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ds_test</span>  <span class="o">=</span> <span class="n">SartoriusDataset</span><span class="p">(</span><span class="n">test_ids</span><span class="p">,</span>  <span class="n">df_raw</span><span class="p">,</span> <span class="n">TRAIN_DIR</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">img_t</span><span class="p">,</span> <span class="n">mask_t</span> <span class="o">=</span> <span class="n">ds_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sample tensor — imagen: </span><span class="si">{</span><span class="n">img_t</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> | máscara: </span><span class="si">{</span><span class="n">mask_t</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Imagen rango: [</span><span class="si">{</span><span class="n">img_t</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">img_t</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Máscara valores únicos: </span><span class="si">{</span><span class="n">mask_t</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train:      424 imágenes (70.0%)
+Validation: 91  imágenes (15.0%)
+Test:       91  imágenes (15.0%)
+
+Sample tensor — imagen: torch.Size([3, 512, 512]) | máscara: torch.Size([512, 512])
+Imagen rango: [0.000, 0.871]
+Máscara valores únicos: tensor([0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusiones-del-eda-y-preprocesamiento">
+<h1>Conclusiones del EDA y Preprocesamiento<a class="headerlink" href="#conclusiones-del-eda-y-preprocesamiento" title="Permalink to this heading">#</a></h1>
+<p>El análisis exploratorio permitió identificar:</p>
+<ul class="simple">
+<li><p>alta variabilidad morfológica celular,</p></li>
+<li><p>diferencias importantes entre tipos celulares,</p></li>
+<li><p>desbalance en densidad celular,</p></li>
+<li><p>variaciones de intensidad y textura,</p></li>
+<li><p>necesidad de augmentations robustas.</p></li>
+</ul>
+<p>El pipeline de preprocesamiento permitió:</p>
+<ul class="simple">
+<li><p>homogenizar entradas,</p></li>
+<li><p>mejorar estabilidad numérica,</p></li>
+<li><p>incrementar capacidad de generalización,</p></li>
+<li><p>preparar adecuadamente los datos para entrenamiento profundo.</p></li>
+</ul>
+<p>Estos hallazgos justifican el uso de arquitecturas avanzadas de segmentación celular.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Proyecto Integrador de Aprendizaje Automático</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_Modelos_Entrenamiento.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bloque 1: Modelos Entrenamiento</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bloque 1: Análisis Exploratorio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sartorius-cell-instance-segmentation">Sartorius Cell Instance Segmentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-imagenes">Preprocesamiento de Imágenes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion">Normalización</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-eda-y-preprocesamiento">Conclusiones del EDA y Preprocesamiento</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
