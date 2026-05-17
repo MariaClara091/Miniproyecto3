@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Reporte_Bloque1_Bloque2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Bloque 2: Procesamiento del Lenguaje Natural (NLP)" href="modelos_nlp.html" />
+    <link rel="prev" title="Bloque 2: Modelos Lenguaje Natural (NLP)" href="modelos_nlp.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,8 +162,8 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="02_Modelos_Entrenamiento.html">Bloque 1: Modelos Entrenamiento</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modelos_nlp.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Análisis Exploratorio Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_nlp.html">Bloque 2: Modelos Lenguaje Natural (NLP)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reporte Final</a></li>
 </ul>
 
@@ -363,6 +363,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">2.1 Análisis Exploratorio de Datos (EDA)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-de-preprocesamiento">2.2 Pipeline de Preprocesamiento</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-resultados">2.3 Modelos y Resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">3. Bloque 2 — Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
@@ -635,6 +636,17 @@ Mejor contorno: HoverNet (Hausdorff=35.67 px — menor es mejor)
 <img alt="_images/d9fae983217e58c357da03ed8c0291c96153e0292c467af1abbb0255cf7489a3.png" src="_images/d9fae983217e58c357da03ed8c0291c96153e0292c467af1abbb0255cf7489a3.png" />
 </div>
 </div>
+</section>
+<section id="limitaciones">
+<h3>Limitaciones:<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Costo computacional prohibitivo con estos modelos
+K-Fold multiplica el entrenamiento por 5. Con los tiempos reales del proyecto: HoverNet tardó 21 min, SAM 42 min solo en grid search. Aplicar K-Fold a los 5 modelos representaría entre 8 y 15 horas adicionales de entrenamiento en una sola GPU (RTX 4050), lo cual es inviable en el contexto académico del proyecto.</p></li>
+<li><p>El dataset es pequeño pero el split es robusto
+Con 606 imágenes únicas y split 70/15/15, el test set tiene 91 imágenes — suficiente para estimar el rendimiento con intervalos de confianza razonables. Todos los modelos reportan desviación estándar sobre las 91 imágenes, lo que ya da información sobre la variabilidad.</p></li>
+<li><p>Grid search cumple el rol de validación cruzada parcial
+El grid search en 2 fases usó un subconjunto de entrenamiento independiente del val set para seleccionar hiperparámetros, evitando data leakage. Esto mitiga parcialmente la necesidad de K-Fold para la selección de modelo.</p></li>
+</ol>
 <hr class="docutils" />
 <p><a id='bloque2'></a></p>
 </section>
@@ -1077,7 +1089,7 @@ Desbalance de clases           shsy5y: 337 cél/img vs cort: 34  AGRICULTURE/AUT
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</p>
+        <p class="prev-next-title">Bloque 2: Modelos Lenguaje Natural (NLP)</p>
       </div>
     </a>
 </div></div>
@@ -1103,6 +1115,7 @@ Desbalance de clases           shsy5y: 337 cél/img vs cort: 34  AGRICULTURE/AUT
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">2.1 Análisis Exploratorio de Datos (EDA)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-de-preprocesamiento">2.2 Pipeline de Preprocesamiento</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-resultados">2.3 Modelos y Resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">3. Bloque 2 — Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
