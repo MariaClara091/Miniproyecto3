@@ -15,3 +15,5 @@ Para ello, se desarrolló un pipeline completo que incluyó análisis explorator
 Los modelos fueron evaluados utilizando métricas especializadas de segmentación, tales como Dice Score, Intersection over Union (IoU), Precision, Recall, AUC, Hausdorff Distance y Balanced Accuracy, permitiendo realizar una comparación integral del desempeño de cada arquitectura en escenarios de microscopía celular.
 
 Finalmente, este trabajo busca evidenciar la importancia de las arquitecturas especializadas en visión biomédica y analizar el impacto del preprocesamiento, la densidad celular y las técnicas de generalización en tareas avanzadas de segmentación profunda.
+
+
