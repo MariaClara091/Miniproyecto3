@@ -336,7 +336,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -352,6 +354,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general-del-proyecto">Objetivo general del proyecto</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -363,18 +373,28 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proyecto-integrador-de-aprendizaje-automatico">
 <h1>Proyecto Integrador de Aprendizaje Automático<a class="headerlink" href="#proyecto-integrador-de-aprendizaje-automatico" title="Permalink to this heading">#</a></h1>
-<p>Integrantes:</p>
+<p><strong>Integrantes:</strong></p>
 <ul class="simple">
 <li><p>María Clara Ávila Chinchia</p></li>
 <li><p>Mateo José Giraldo Castillo</p></li>
 <li><p>Miguel Angel Lugo Cozzarelli</p></li>
 <li><p>Hector David Sanjuan Fábregas</p></li>
 </ul>
+<hr class="docutils" />
 <p>La segmentación celular en imágenes microscópicas constituye una de las tareas más relevantes dentro del análisis biomédico asistido por inteligencia artificial, debido a su impacto en áreas como diagnóstico clínico, investigación médica y análisis automatizado de tejidos. Sin embargo, este problema presenta múltiples desafíos relacionados con la variabilidad morfológica de las células, la presencia de superposición entre estructuras y el desbalance existente entre diferentes tipos celulares.</p>
-<p>En este proyecto se implementaron y compararon múltiples arquitecturas modernas de Deep Learning para segmentación celular utilizando el dataset Sartorius Cell Instance Segmentation. El objetivo principal fue evaluar el desempeño de diferentes enfoques de segmentación biomédica mediante métricas especializadas, identificando fortalezas, limitaciones y capacidad de generalización de cada modelo.</p>
-<p>Para ello, se desarrolló un pipeline completo que incluyó análisis exploratorio de datos (EDA), reconstrucción de máscaras mediante Run Length Encoding (RLE), preprocesamiento de imágenes, técnicas de data augmentation, entrenamiento de modelos y evaluación cuantitativa. Entre las arquitecturas implementadas se encuentran U-Net++, HoverNet, Cellpose 2.0, Segment Anything Model (SAM) y Mask R-CNN con Swin Transformer.</p>
+<p>En este bloque se implementaron y compararon múltiples arquitecturas modernas de Deep Learning para segmentación celular utilizando el dataset <strong>Sartorius Cell Instance Segmentation</strong> (Kaggle, 2021), compuesto por 606 imágenes de microscopía de campo brillante correspondientes a tres líneas celulares: <code class="docutils literal notranslate"><span class="pre">shsy5y</span></code>, <code class="docutils literal notranslate"><span class="pre">astro</span></code> y <code class="docutils literal notranslate"><span class="pre">cort</span></code>. El objetivo principal fue evaluar el desempeño de diferentes enfoques de segmentación biomédica mediante métricas especializadas, identificando fortalezas, limitaciones y capacidad de generalización de cada arquitectura.</p>
+<p>Para ello, se desarrolló un pipeline completo que incluyó análisis exploratorio de datos (EDA), reconstrucción de máscaras mediante Run Length Encoding (RLE), preprocesamiento de imágenes, técnicas de data augmentation, entrenamiento de modelos y evaluación cuantitativa. Entre las arquitecturas implementadas se encuentran <strong>U-Net++</strong>, <strong>HoverNet</strong>, <strong>Cellpose 2.0</strong>, <strong>Segment Anything Model (SAM)</strong> y <strong>Mask R-CNN con Swin Transformer</strong>.</p>
 <p>Los modelos fueron evaluados utilizando métricas especializadas de segmentación, tales como Dice Score, Intersection over Union (IoU), Precision, Recall, AUC, Hausdorff Distance y Balanced Accuracy, permitiendo realizar una comparación integral del desempeño de cada arquitectura en escenarios de microscopía celular.</p>
-<p>Finalmente, este trabajo busca evidenciar la importancia de las arquitecturas especializadas en visión biomédica y analizar el impacto del preprocesamiento, la densidad celular y las técnicas de generalización en tareas avanzadas de segmentación profunda.</p>
+<p>La clasificación automática de texto constituye uno de los problemas de mayor impacto práctico dentro del Procesamiento del Lenguaje Natural, con aplicaciones directas en reclutamiento, gestión documental y análisis de contenido a escala. En el contexto del reclutamiento masivo, un clasificador preciso puede reducir el tiempo de filtrado de currículos de horas a milisegundos, mientras que un sistema mal calibrado puede sistematizar sesgos en los procesos de selección.</p>
+<p>En este bloque se implementaron y compararon cinco enfoques de NLP para la clasificación automática de currículos en categorías laborales, utilizando el dataset <strong>Jarvis Calling Hiring Contest</strong> (Kaggle, 2023), compuesto por 2.484 currículos en texto plano distribuidos en 25 categorías profesionales. El objetivo principal fue comparar el rendimiento de paradigmas fundamentalmente distintos: desde transformers preentrenados de última generación hasta métodos clásicos de Machine Learning, pasando por redes recurrentes bidireccionales, redes convolucionales y representaciones por n-gramas de caracteres.</p>
+<p>Se desarrolló un pipeline completo que incluyó análisis exploratorio del corpus textual (distribución de clases, longitud de textos, frecuencia de palabras y n-gramas), limpieza y normalización del texto, tokenización, eliminación de stopwords, búsqueda de hiperparámetros mediante Grid Search y Random Search, y evaluación en conjunto de test fijo. Las arquitecturas implementadas fueron <strong>RoBERTa</strong> (fine-tuning), <strong>Word2Vec + BiLSTM</strong>, <strong>CNN-1D</strong>, <strong>TF-IDF + XGBoost</strong> y <strong>FastText</strong>.</p>
+<p>Los modelos fueron evaluados con métricas de clasificación multiclase: Accuracy, Precision weighted, Recall weighted, F1-score weighted y ROC-AUC OvR weighted, permitiendo una comparación robusta entre paradigmas con distintas capacidades de representación semántica.</p>
+<hr class="docutils" />
+<section id="objetivo-general-del-proyecto">
+<h2>Objetivo general del proyecto<a class="headerlink" href="#objetivo-general-del-proyecto" title="Permalink to this heading">#</a></h2>
+<p>Aplicar de forma integral las técnicas de Deep Learning y Machine Learning estudiadas en el curso a dos dominios de aplicación con problemáticas distintas —visión computacional y lenguaje natural— evaluando sistemáticamente múltiples arquitecturas, comparando su desempeño mediante métricas especializadas y extrayendo conclusiones críticas sobre las condiciones bajo las cuales cada enfoque resulta más adecuado.</p>
+<p>Este trabajo busca evidenciar la importancia de las arquitecturas especializadas en cada dominio, el impacto del preprocesamiento y las estrategias de regularización, y el rol del transfer learning como factor diferenciador en escenarios con datos limitados.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -428,6 +448,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general-del-proyecto">Objetivo general del proyecto</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

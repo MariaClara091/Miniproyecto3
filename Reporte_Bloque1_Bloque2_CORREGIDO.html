@@ -1,0 +1,1020 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Reporte Final &#8212; Segmentación de Imágenes Biomédicas y Clasificación de Texto NLP</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Reporte_Bloque1_Bloque2_CORREGIDO';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyecto Integrador de Aprendizaje Automático
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_EDA_Preprocesamiento.html">Bloque 1: Análisis Exploratorio</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_Modelos_Entrenamiento.html">Bloque 1: Modelos Entrenamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_nlp.html">Bloque 2: Modelos Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reporte_Bloque1_Bloque2.html">Reporte Final</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FReporte_Bloque1_Bloque2_CORREGIDO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Reporte_Bloque1_Bloque2_CORREGIDO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Reporte Final</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-contenidos">Tabla de Contenidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-1-segmentacion-de-imagenes-biomedicas">2. Bloque 1 — Segmentación de Imágenes Biomédicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">2.1 Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-de-preprocesamiento">2.2 Pipeline de Preprocesamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-resultados">2.3 Modelos y Resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">3. Bloque 2 — Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-texto">3.2 Preprocesamiento de Texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.3 Modelos y Resultados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-transversal-bloque-1-vs-bloque-2">4. Comparativa Transversal — Bloque 1 vs Bloque 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patron-comun-transfer-learning-es-decisivo-en-ambos-bloques">4.1 Patrón común: Transfer Learning es decisivo en ambos bloques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comportamiento-del-metodo-clasico-en-ambos-bloques">4.2 Comportamiento del método clásico en ambos bloques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-generales">5. Conclusiones Generales</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reporte-final">
+<h1>Reporte Final<a class="headerlink" href="#reporte-final" title="Permalink to this heading">#</a></h1>
+<section id="tabla-de-contenidos">
+<h2>Tabla de Contenidos<a class="headerlink" href="#tabla-de-contenidos" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Sección</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><span class="xref myst">Bloque 1 — Segmentación Biomédica</span></p></td>
+<td><p>Dataset, EDA, preprocesamiento, modelos, resultados</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><span class="xref myst">Bloque 2 — NLP</span></p></td>
+<td><p>Dataset, EDA, preprocesamiento, modelos, resultados</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p><span class="xref myst">Comparativa Transversal</span></p></td>
+<td><p>Análisis conjunto de ambos bloques</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p><span class="xref myst">Conclusiones Generales</span></p></td>
+<td><p>Reflexiones finales del proyecto</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><a id='bloque1'></a></p>
+</section>
+<section id="bloque-1-segmentacion-de-imagenes-biomedicas">
+<h2>2. Bloque 1 — Segmentación de Imágenes Biomédicas<a class="headerlink" href="#bloque-1-segmentacion-de-imagenes-biomedicas" title="Permalink to this heading">#</a></h2>
+<div style="background: #EFF6FF; border-left: 4px solid #2C3E7A; padding: 12px 18px; border-radius: 4px; margin-bottom: 12px;">
+<b>Dataset:</b> Sartorius Cell Instance Segmentation (Kaggle 2021) — 606 imágenes de microscopía de campo brillante, 3 líneas celulares: <code>shsy5y</code>, <code>astro</code>, <code>cort</code>. Anotaciones en formato RLE.
+</div><section id="analisis-exploratorio-de-datos-eda">
+<h3>2.1 Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#analisis-exploratorio-de-datos-eda" title="Permalink to this heading">#</a></h3>
+<p>El EDA completo está documentado en <code class="docutils literal notranslate"><span class="pre">01_EDA.ipynb</span></code>. Los hallazgos principales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Estadísticas del dataset (valores del EDA ejecutado) ──</span>
+<span class="n">eda_b1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Tipo celular&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">,</span> <span class="s1">&#39;TOTAL&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;N° imágenes&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="mi">155</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">606</span><span class="p">],</span>
+    <span class="s1">&#39;Células/img (media)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">337.2</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">33.7</span><span class="p">,</span> <span class="s1">&#39;—&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Área media (px²)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;~450&#39;</span><span class="p">,</span> <span class="s1">&#39;~1,200&#39;</span><span class="p">,</span> <span class="s1">&#39;~800&#39;</span><span class="p">,</span> <span class="s1">&#39;—&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Reto principal&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Alta densidad, instancias tocantes&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Procesos finos difíciles de delimitar&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Pocas células por imagen&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;&#39;</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset Sartorius — Estadísticas por tipo celular:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eda_b1</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset Sartorius — Estadísticas por tipo celular:
+Tipo celular  N° imágenes Células/img (media) Área media (px²)                        Reto principal
+      shsy5y          155               337.2             ~450    Alta densidad, instancias tocantes
+       astro          131                79.8           ~1,200 Procesos finos difíciles de delimitar
+        cort          320                33.7             ~800              Pocas células por imagen
+       TOTAL          606                   —                —                                      
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualización del desbalance celular </span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Bloque 1 — EDA: Distribución del dataset Sartorius&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># N° imágenes por tipo</span>
+<span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;shsy5y&#39;</span><span class="p">,</span> <span class="s1">&#39;astro&#39;</span><span class="p">,</span> <span class="s1">&#39;cort&#39;</span><span class="p">]</span>
+<span class="n">n_imgs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">155</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">320</span><span class="p">]</span>
+<span class="n">colors_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#4C72B0&#39;</span><span class="p">,</span> <span class="s1">&#39;#DD8452&#39;</span><span class="p">,</span> <span class="s1">&#39;#55A868&#39;</span><span class="p">]</span>
+<span class="n">bars1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">types</span><span class="p">,</span> <span class="n">n_imgs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors_types</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;N° imágenes por tipo celular&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Cantidad de imágenes&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars1</span><span class="p">,</span> <span class="n">n_imgs</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span>
+                 <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">380</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Células por imagen (media)</span>
+<span class="n">cells_per_img</span> <span class="o">=</span> <span class="p">[</span><span class="mf">337.2</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">33.7</span><span class="p">]</span>
+<span class="n">bars2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">types</span><span class="p">,</span> <span class="n">cells_per_img</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors_types</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Células promedio por imagen&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;N° de células (media)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars2</span><span class="p">,</span> <span class="n">cells_per_img</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span>
+                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/691dc8ac7f2c6935ff6aab116538104e6bdd64bc58c267943e6c832e8c446085.png" src="_images/691dc8ac7f2c6935ff6aab116538104e6bdd64bc58c267943e6c832e8c446085.png" />
+</div>
+</div>
+<p><strong>Observaciones:</strong></p>
+<ul class="simple">
+<li><p>shsy5y: mayor densidad celular → reto: separar instancias tocantes</p></li>
+<li><p>cort: menor densidad → menos señal de entrenamiento por imagen</p></li>
+<li><p>La variabilidad en células/img genera sesgo en la loss function</p></li>
+</ul>
+</section>
+<section id="pipeline-de-preprocesamiento">
+<h3>2.2 Pipeline de Preprocesamiento<a class="headerlink" href="#pipeline-de-preprocesamiento" title="Permalink to this heading">#</a></h3>
+<p>Documentado en <code class="docutils literal notranslate"><span class="pre">02_Modelos_Entrenamiento.ipynb</span></code>. Pasos aplicados:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Operación</p></th>
+<th class="head"><p>Justificación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Validación de integridad</p></td>
+<td><p>Confirmar que 606 PNGs y anotaciones RLE son correctas</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Resize 512×512</p></td>
+<td><p>Potencia de 2, compatible con skip-connections de U-Net</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Normalización [0,1]</p></td>
+<td><p>Estabilizar gradientes; <code class="docutils literal notranslate"><span class="pre">NEAREST</span></code> para máscaras</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Data Augmentation</p></td>
+<td><p>7 transformaciones: flip, rotate, elastic, brightness…</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Split 70/15/15</p></td>
+<td><p>424 train / 91 val / 91 test (seed=42)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modelos-y-resultados">
+<h3>2.3 Modelos y Resultados<a class="headerlink" href="#modelos-y-resultados" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_b1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;U-Net++ + Watershed&#39;</span><span class="p">,</span> <span class="s1">&#39;HoverNet&#39;</span><span class="p">,</span> <span class="s1">&#39;Mask R-CNN + Swin&#39;</span><span class="p">,</span> <span class="s1">&#39;Cellpose 2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;SAM (fine-tuned)&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Paradigma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Encoder-Decoder&#39;</span><span class="p">,</span> <span class="s1">&#39;Segm. nuclear HV&#39;</span><span class="p">,</span> <span class="s1">&#39;Detección instancias&#39;</span><span class="p">,</span> <span class="s1">&#39;Flujos vectoriales&#39;</span><span class="p">,</span> <span class="s1">&#39;Transformer visión&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Dice&#39;</span><span class="p">:</span>      <span class="p">[</span><span class="mf">0.7631</span><span class="p">,</span> <span class="mf">0.7471</span><span class="p">,</span> <span class="mf">0.5560</span><span class="p">,</span> <span class="mf">0.4067</span><span class="p">,</span> <span class="mf">0.0236</span><span class="p">],</span>
+    <span class="s1">&#39;IoU&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="mf">0.6262</span><span class="p">,</span> <span class="mf">0.6061</span><span class="p">,</span> <span class="mf">0.4030</span><span class="p">,</span> <span class="mf">0.2747</span><span class="p">,</span> <span class="mf">0.0121</span><span class="p">],</span>
+    <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7578</span><span class="p">,</span> <span class="mf">0.7310</span><span class="p">,</span> <span class="mf">0.6936</span><span class="p">,</span> <span class="mf">0.4257</span><span class="p">,</span> <span class="mf">0.2132</span><span class="p">],</span>
+    <span class="s1">&#39;Recall&#39;</span><span class="p">:</span>    <span class="p">[</span><span class="mf">0.8059</span><span class="p">,</span> <span class="mf">0.7998</span><span class="p">,</span> <span class="mf">0.5283</span><span class="p">,</span> <span class="mf">0.4709</span><span class="p">,</span> <span class="mf">0.0135</span><span class="p">],</span>
+    <span class="s1">&#39;AUC&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="mf">0.9357</span><span class="p">,</span> <span class="mf">0.8790</span><span class="p">,</span> <span class="mf">0.7559</span><span class="p">,</span> <span class="mf">0.7074</span><span class="p">,</span> <span class="mf">0.5041</span><span class="p">],</span>
+    <span class="s1">&#39;Hausdorff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">71.72</span><span class="p">,</span>  <span class="mf">35.67</span><span class="p">,</span>  <span class="mf">103.08</span><span class="p">,</span> <span class="mf">131.41</span><span class="p">,</span> <span class="mf">143.00</span><span class="p">],</span>
+    <span class="s1">&#39;Bal.Acc&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.8832</span><span class="p">,</span> <span class="mf">0.8790</span><span class="p">,</span> <span class="mf">0.7559</span><span class="p">,</span> <span class="mf">0.7074</span><span class="p">,</span> <span class="mf">0.5041</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">105</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  TABLA COMPARATIVA — BLOQUE 1: SEGMENTACIÓN (Test set, 91 imágenes)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">105</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_b1</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor Dice: U-Net++ + Watershed  (Dice=0.7631, AUC=0.9357)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor contorno: HoverNet           (Hausdorff=35.67 px — menor es mejor)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=========================================================================================================
+  TABLA COMPARATIVA — BLOQUE 1: SEGMENTACIÓN (Test set, 91 imágenes)
+=========================================================================================================
+             Modelo            Paradigma   Dice    IoU  Precision  Recall    AUC  Hausdorff  Bal.Acc
+U-Net++ + Watershed      Encoder-Decoder 0.7631 0.6262     0.7578  0.8059 0.9357      71.72   0.8832
+           HoverNet     Segm. nuclear HV 0.7471 0.6061     0.7310  0.7998 0.8790      35.67   0.8790
+  Mask R-CNN + Swin Detección instancias 0.5560 0.4030     0.6936  0.5283 0.7559     103.08   0.7559
+       Cellpose 2.0   Flujos vectoriales 0.4067 0.2747     0.4257  0.4709 0.7074     131.41   0.7074
+   SAM (fine-tuned)   Transformer visión 0.0236 0.0121     0.2132  0.0135 0.5041     143.00   0.5041
+
+Mejor Dice: U-Net++ + Watershed  (Dice=0.7631, AUC=0.9357)
+Mejor contorno: HoverNet           (Hausdorff=35.67 px — menor es mejor)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Bloque 1 — Comparativa de modelos de segmentación&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="n">results_b1</span><span class="p">[</span><span class="s1">&#39;Modelo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">metricas_sel</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Dice&#39;</span><span class="p">,</span> <span class="s1">&#39;IoU&#39;</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;Bal.Acc&#39;</span><span class="p">]</span>
+<span class="n">colors_m</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#4C72B0&#39;</span><span class="p">,</span> <span class="s1">&#39;#DD8452&#39;</span><span class="p">,</span> <span class="s1">&#39;#55A868&#39;</span><span class="p">,</span> <span class="s1">&#39;#C44E52&#39;</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">met</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">metricas_sel</span><span class="p">,</span> <span class="n">colors_m</span><span class="p">)):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">width</span><span class="p">,</span> <span class="n">results_b1</span><span class="p">[</span><span class="n">met</span><span class="p">],</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">met</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">*</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; + &#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">+&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Valor (mayor = mejor)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Métricas por modelo (↑ mejor)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Hausdorff (menor es mejor)</span>
+<span class="n">hd_vals</span> <span class="o">=</span> <span class="n">results_b1</span><span class="p">[</span><span class="s1">&#39;Hausdorff&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">bar_colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2ECC71&#39;</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;#E74C3C&#39;</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">hd_vals</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;#3498DB&#39;</span>
+              <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hd_vals</span><span class="p">)]</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">hd_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bar_colors</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hausdorff Distance (px) — ↓ mejor&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Precisión de contorno (Hausdorff)&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">hd_vals</span><span class="p">):</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">green_p</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2ECC71&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mejor Dice&#39;</span><span class="p">)</span>
+<span class="n">blue_p</span>  <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498DB&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mejor Hausdorff&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">green_p</span><span class="p">,</span> <span class="n">blue_p</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d9fae983217e58c357da03ed8c0291c96153e0292c467af1abbb0255cf7489a3.png" src="_images/d9fae983217e58c357da03ed8c0291c96153e0292c467af1abbb0255cf7489a3.png" />
+</div>
+</div>
+</section>
+<section id="limitaciones">
+<h3>Limitaciones:<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Costo computacional prohibitivo con estos modelos
+K-Fold multiplica el entrenamiento por 5. Con los tiempos reales del proyecto: HoverNet tardó 21 min, SAM 42 min solo en grid search. Aplicar K-Fold a los 5 modelos representaría entre 8 y 15 horas adicionales de entrenamiento en una sola GPU (RTX 4050), lo cual es inviable en el contexto académico del proyecto.</p></li>
+<li><p>El dataset es pequeño pero el split es robusto
+Con 606 imágenes únicas y split 70/15/15, el test set tiene 91 imágenes — suficiente para estimar el rendimiento con intervalos de confianza razonables. Todos los modelos reportan desviación estándar sobre las 91 imágenes, lo que ya da información sobre la variabilidad.</p></li>
+<li><p>Grid search cumple el rol de validación cruzada parcial
+El grid search en 2 fases usó un subconjunto de entrenamiento independiente del val set para seleccionar hiperparámetros, evitando data leakage. Esto mitiga parcialmente la necesidad de K-Fold para la selección de modelo.</p></li>
+</ol>
+<hr class="docutils" />
+<p><a id='bloque2'></a></p>
+</section>
+</section>
+<section id="bloque-2-procesamiento-del-lenguaje-natural-nlp">
+<h2>3. Bloque 2 — Procesamiento del Lenguaje Natural (NLP)<a class="headerlink" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp" title="Permalink to this heading">#</a></h2>
+<div style="background: #F0FDF4; border-left: 4px solid #1B998B; padding: 12px 18px; border-radius: 4px; margin-bottom: 12px;">
+<b>Dataset:</b> Jarvis Calling Hiring Contest (Kaggle 2023) — 2,484 currículos en texto plano, 25 categorías laborales. Variable objetivo: <code>Category</code>.
+</div><section id="id1">
+<h3>3.1 Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eda_b2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Estadístico&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Total registros&#39;</span><span class="p">,</span> <span class="s1">&#39;Categorías únicas&#39;</span><span class="p">,</span> <span class="s1">&#39;Palabras/CV (media)&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Palabras/CV (mediana)&#39;</span><span class="p">,</span> <span class="s1">&#39;Palabras/CV (P25)&#39;</span><span class="p">,</span> <span class="s1">&#39;Palabras/CV (P75)&#39;</span><span class="p">,</span> 
+                    <span class="s1">&#39;Categorías subrepresentadas&#39;</span><span class="p">,</span> <span class="s1">&#39;Valores faltantes&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Valor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;2,484&#39;</span><span class="p">,</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span> <span class="s1">&#39;≈550&#39;</span><span class="p">,</span> <span class="s1">&#39;≈540&#39;</span><span class="p">,</span> <span class="s1">&#39;≈443&#39;</span><span class="p">,</span> <span class="s1">&#39;≈653&#39;</span><span class="p">,</span> 
+              <span class="s1">&#39;AGRICULTURE, AUTOMOBILE, BPO&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Observación&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Suficiente para fine-tuning y entrenamiento desde cero&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Clasificación multiclase de alta cardinalidad&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Contenido textual abundante para NLP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Distribución relativamente simétrica&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;75</span><span class="si">% d</span><span class="s1">e CVs &gt; 443 palabras tras preprocesamiento&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Cola larga: algunos CVs muy extensos&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Riesgo de mayor tasa de error en estas clases&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Dataset limpio, sin imputación necesaria&#39;</span>
+    <span class="p">]</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eda_b2</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Estadístico                        Valor                                            Observación
+            Total registros                        2,484 Suficiente para fine-tuning y entrenamiento desde cero
+          Categorías únicas                           25          Clasificación multiclase de alta cardinalidad
+        Palabras/CV (media)                         ≈550                   Contenido textual abundante para NLP
+      Palabras/CV (mediana)                         ≈540                   Distribución relativamente simétrica
+          Palabras/CV (P25)                         ≈443        75% de CVs &gt; 443 palabras tras preprocesamiento
+          Palabras/CV (P75)                         ≈653                   Cola larga: algunos CVs muy extensos
+Categorías subrepresentadas AGRICULTURE, AUTOMOBILE, BPO          Riesgo de mayor tasa de error en estas clases
+          Valores faltantes                            0               Dataset limpio, sin imputación necesaria
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocesamiento-de-texto">
+<h3>3.2 Preprocesamiento de Texto<a class="headerlink" href="#preprocesamiento-de-texto" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pipeline de limpieza aplicado (función clean_text)</span>
+<span class="c1"># 1. Normalizar whitespace (\n, \r, \t → espacio)</span>
+<span class="c1"># 2. Reemplazar &#39;/&#39; por espacio</span>
+<span class="c1"># 3. Convertir a minúsculas</span>
+<span class="c1"># 4. Eliminar caracteres no [a-z, espacio]</span>
+<span class="c1"># 5. Tokenizar con NLTK word_tokenize</span>
+<span class="c1"># 6. Eliminar stopwords inglés + {company, name, city, state, experience, skills}</span>
+<span class="c1"># 7. Filtrar tokens len &gt; 2</span>
+</pre></div>
+</div>
+<p><strong>Split estratificado:</strong> 70% train (1,738) | 15% val (373) | 15% test (373)</p>
+</section>
+<section id="id2">
+<h3>3.3 Modelos y Resultados<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_b2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;RoBERTa&#39;</span><span class="p">,</span> <span class="s1">&#39;Word2Vec+BiLSTM&#39;</span><span class="p">,</span> <span class="s1">&#39;CNN-1D&#39;</span><span class="p">,</span> <span class="s1">&#39;FastText&#39;</span><span class="p">,</span> <span class="s1">&#39;TF-IDF+XGBoost&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Paradigma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Transformer pretrained&#39;</span><span class="p">,</span> <span class="s1">&#39;Recurrente bidireccional&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;Convolucional local&#39;</span><span class="p">,</span> <span class="s1">&#39;N-gramas caracteres&#39;</span><span class="p">,</span> <span class="s1">&#39;ML Clásico&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Búsqueda HP&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Grid (4 configs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Random (12 iter)&#39;</span><span class="p">,</span> <span class="s1">&#39;Random (10 iter)&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Random (10 iter)&#39;</span><span class="p">,</span> <span class="s1">&#39;Grid (9 configs)&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7909</span><span class="p">,</span> <span class="mf">0.7560</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
+    <span class="s1">&#39;Precision&#39;</span><span class="p">:[</span><span class="mf">0.8040</span><span class="p">,</span> <span class="mf">0.7451</span><span class="p">,</span> <span class="mf">0.7247</span><span class="p">,</span> <span class="mf">0.6390</span><span class="p">,</span> <span class="mf">0.4626</span><span class="p">],</span>
+    <span class="s1">&#39;Recall&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.7909</span><span class="p">,</span> <span class="mf">0.7560</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
+    <span class="s1">&#39;F1&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="mf">0.7801</span><span class="p">,</span> <span class="mf">0.7412</span><span class="p">,</span> <span class="mf">0.7259</span><span class="p">,</span> <span class="mf">0.6326</span><span class="p">,</span> <span class="mf">0.4778</span><span class="p">],</span>
+    <span class="s1">&#39;ROC-AUC&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.9665</span><span class="p">,</span> <span class="mf">0.9543</span><span class="p">,</span> <span class="mf">0.9640</span><span class="p">,</span> <span class="mf">0.9221</span><span class="p">,</span> <span class="mf">0.8135</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">95</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  TABLA COMPARATIVA — BLOQUE 2: NLP (Test set, 373 currículos)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">95</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_b2</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor modelo: RoBERTa (F1=0.7801, ROC-AUC=0.9665)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficientemente especializado&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===============================================================================================
+  TABLA COMPARATIVA — BLOQUE 2: NLP (Test set, 373 currículos)
+===============================================================================================
+         Modelo                Paradigma      Búsqueda HP  Accuracy  Precision  Recall     F1  ROC-AUC
+        RoBERTa   Transformer pretrained Grid (4 configs)    0.7909     0.8040  0.7909 0.7801   0.9665
+Word2Vec+BiLSTM Recurrente bidireccional Random (12 iter)    0.7560     0.7451  0.7560 0.7412   0.9543
+         CNN-1D      Convolucional local Random (10 iter)    0.7453     0.7247  0.7453 0.7259   0.9640
+       FastText      N-gramas caracteres Random (10 iter)    0.6488     0.6390  0.6488 0.6326   0.9221
+ TF-IDF+XGBoost               ML Clásico Grid (9 configs)    0.5282     0.4626  0.5282 0.4778   0.8135
+
+Mejor modelo: RoBERTa (F1=0.7801, ROC-AUC=0.9665)
+Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficientemente especializado
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><a id='comparativa'></a></p>
+</section>
+</section>
+<section id="comparativa-transversal-bloque-1-vs-bloque-2">
+<h2>4. Comparativa Transversal — Bloque 1 vs Bloque 2<a class="headerlink" href="#comparativa-transversal-bloque-1-vs-bloque-2" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANÁLISIS TRANSVERSAL</span>
+<span class="n">comparativa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Aspecto&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Tamaño dataset&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Mejor modelo&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Métrica principal (mejor)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Transfer learning&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Estrategia HP&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Desbalance de clases&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Mayor reto técnico&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Sorpresa del bloque&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Bloque 1 — Visión&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;606 imágenes (pequeño)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;U-Net++ + Watershed&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Dice = 0.7631&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ResNet34 (ImageNet) → decisivo&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Grid + Random Search&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;shsy5y: 337 cél/img vs cort: 34&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Separar células tocantes densas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;HoverNet sin pretrain: Dice=0.747&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Bloque 2 — NLP&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;2,484 currículos (moderado)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;RoBERTa (fine-tuned)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;F1 = 0.7801&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;RoBERTa 160GB texto → decisivo&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Grid + Random Search&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;AGRICULTURE/AUTOMOBILE/BPO sub.&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Vocabulario solapado entre clases&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;TF-IDF+XGBoost es el PEOR (F1=0.48)&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">comparativa</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Aspecto                 Bloque 1 — Visión                      Bloque 2 — NLP
+           Tamaño dataset            606 imágenes (pequeño)         2,484 currículos (moderado)
+             Mejor modelo               U-Net++ + Watershed                RoBERTa (fine-tuned)
+Métrica principal (mejor)                     Dice = 0.7631                         F1 = 0.7801
+        Transfer learning    ResNet34 (ImageNet) → decisivo      RoBERTa 160GB texto → decisivo
+            Estrategia HP              Grid + Random Search                Grid + Random Search
+     Desbalance de clases   shsy5y: 337 cél/img vs cort: 34     AGRICULTURE/AUTOMOBILE/BPO sub.
+       Mayor reto técnico   Separar células tocantes densas   Vocabulario solapado entre clases
+      Sorpresa del bloque HoverNet sin pretrain: Dice=0.747 TF-IDF+XGBoost es el PEOR (F1=0.48)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Observación transversal:</strong></p>
+<ul class="simple">
+<li><p>Bloque 1: alta dispersión de Dice (0.02–0.76) → la elección de arquitectura es crítica</p></li>
+<li><p>Bloque 2: F1 entre 0.48 y 0.78 → RoBERTa gana pero el gap entre modelos es significativo</p></li>
+<li><p>Sorpresa Bloque 2: TF-IDF+XGBoost es el <strong>peor</strong> modelo (F1=0.4778), contrario a lo esperado para clasificación de documentos con vocabulario especializado. Esto puede deberse al ruido léxico de los CVs (acrónimos, formatos variables) que perjudica la representación sparse de TF-IDF más que a los embeddings contextuales.</p></li>
+</ul>
+<section id="patron-comun-transfer-learning-es-decisivo-en-ambos-bloques">
+<h3>4.1 Patrón común: Transfer Learning es decisivo en ambos bloques<a class="headerlink" href="#patron-comun-transfer-learning-es-decisivo-en-ambos-bloques" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bloque</p></th>
+<th class="head"><p>Sin transfer learning</p></th>
+<th class="head"><p>Con transfer learning</p></th>
+<th class="head"><p>Δ ganancia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bloque 1</p></td>
+<td><p>HoverNet (desde cero): Dice=0.747</p></td>
+<td><p>U-Net++ (ResNet34 ImageNet): Dice=0.763</p></td>
+<td><p>+0.016</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bloque 1</p></td>
+<td><p>SAM (encoder congelado, sin adaptar): Dice=0.024</p></td>
+<td><p>U-Net++ (fine-tuning completo): Dice=0.763</p></td>
+<td><p>+0.739</p></td>
+</tr>
+<tr class="row-even"><td><p>Bloque 2</p></td>
+<td><p>FastText (sin preentrenamiento): F1=0.633</p></td>
+<td><p>RoBERTa (fine-tuning): F1=0.780</p></td>
+<td><p>+0.147</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión:</strong> El transfer learning incorrecto (SAM sin prompts, encoder congelado) puede ser peor que entrenar desde cero. El transfer learning correcto (fine-tuning completo + dominio compatible) es siempre superior.</p>
+</section>
+<section id="comportamiento-del-metodo-clasico-en-ambos-bloques">
+<h3>4.2 Comportamiento del método clásico en ambos bloques<a class="headerlink" href="#comportamiento-del-metodo-clasico-en-ambos-bloques" title="Permalink to this heading">#</a></h3>
+<p>En los dos bloques, el método clásico tuvo resultados opuestos:</p>
+<ul class="simple">
+<li><p><strong>Bloque 1:</strong> U-Net++ (encoder-decoder “clásico” con pretraining) es el <strong>mejor</strong> modelo.</p></li>
+<li><p><strong>Bloque 2:</strong> TF-IDF + XGBoost es el <strong>peor</strong> modelo (F1=0.4778), sorprendentemente por debajo de todos los enfoques neurales.</p></li>
+</ul>
+<p><strong>Por qué TF-IDF falla en este dataset:</strong> Los CVs tienen alta variabilidad léxica (siglas, formatos distintos, idioma mixto, errores tipográficos), lo que fragmenta el vocabulario TF-IDF y produce vectores dispersos poco discriminativos. Los modelos que aprenden representaciones densas (embeddings) manejan mejor este ruido.</p>
+<hr class="docutils" />
+<p><a id='conclusiones'></a></p>
+</section>
+</section>
+<section id="conclusiones-generales">
+<h2>5. Conclusiones Generales<a class="headerlink" href="#conclusiones-generales" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Transfer Learning domina ambos dominios</p></li>
+</ol>
+<ul class="simple">
+<li><p>Los dos mejores modelos del proyecto son U-Net++ (encoder ImageNet) y RoBERTa (preentrenado en 160GB).</p></li>
+<li><p>Sin transfer learning, los resultados caen drásticamente, especialmente con datasets pequeños como Sartorius (606 imágenes)</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>El post-procesamiento puede ser tan importante como el modelo</p></li>
+</ol>
+<ul class="simple">
+<li><p>En el Bloque 1, añadir Watershed a U-Net++ fue crítico para separar instancias celulares tocantes. El modelo neuronal por sí solo no resuelve la separación de instancias; la ingeniería de post-procesamiento cierra la brecha.,</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Métodos clásicos siguen siendo competitivos en problemas bien definidos</p></li>
+</ol>
+<ul class="simple">
+<li><p>TF-IDF + XGBoost (F1=0.96) casi iguala a RoBERTa (F1=0.97) con una fracción del costo computacional. Para aplicaciones con restricciones de latencia o interpretabilidad, la solución clásica puede ser la decisión de negocio correcta.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>La arquitectura debe estar alineada con la naturaleza del problema</p></li>
+</ol>
+<ul class="simple">
+<li><p>SAM falla (Dice=0.02) porque su diseño requiere prompts y fue preentrenado en fotografías naturales, no en microscopía. FastText queda último porque ignora el orden de palabras, crítico en textos con estructura semántica.”),</p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p>El desbalance de clases es el mayor riesgo operacional</p></li>
+</ol>
+<ul class="simple">
+<li><p>En ambos bloques, las clases subrepresentadas (shsy5y vs cort en segmentación AGRICULTURE/BPO en NLP) generan los peores resultados</p></li>
+<li><p>Estrategias como class weighting, oversampling focal loss o augmentation dirigida son mejoras directas identificadas.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-contenidos">Tabla de Contenidos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-1-segmentacion-de-imagenes-biomedicas">2. Bloque 1 — Segmentación de Imágenes Biomédicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">2.1 Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-de-preprocesamiento">2.2 Pipeline de Preprocesamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-resultados">2.3 Modelos y Resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bloque-2-procesamiento-del-lenguaje-natural-nlp">3. Bloque 2 — Procesamiento del Lenguaje Natural (NLP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-texto">3.2 Preprocesamiento de Texto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.3 Modelos y Resultados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparativa-transversal-bloque-1-vs-bloque-2">4. Comparativa Transversal — Bloque 1 vs Bloque 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patron-comun-transfer-learning-es-decisivo-en-ambos-bloques">4.1 Patrón común: Transfer Learning es decisivo en ambos bloques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comportamiento-del-metodo-clasico-en-ambos-bloques">4.2 Comportamiento del método clásico en ambos bloques</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-generales">5. Conclusiones Generales</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
