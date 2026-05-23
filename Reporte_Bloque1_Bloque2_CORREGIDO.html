@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Reporte_Bloque1_Bloque2_CORREGIDO';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Bloque 2: Modelos Lenguaje Natural (NLP)" href="modelos_nlp.html" />
+    <link rel="prev" title="Bloque 2: Procesamiento del Lenguaje Natural (NLP)" href="modelos_nlp_nu.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="02_Modelos_Entrenamiento.html">Bloque 1: Modelos Entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modelos_nlp.html">Bloque 2: Modelos Lenguaje Natural (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelos_nlp_nu.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reporte Final</a></li>
 </ul>
 
@@ -872,19 +872,19 @@ Métrica principal (mejor)                     Dice = 0.7631                    
 <li><p>El post-procesamiento puede ser tan importante como el modelo</p></li>
 </ol>
 <ul class="simple">
-<li><p>En el Bloque 1, añadir Watershed a U-Net++ fue crítico para separar instancias celulares tocantes. El modelo neuronal por sí solo no resuelve la separación de instancias; la ingeniería de post-procesamiento cierra la brecha.,</p></li>
+<li><p>En el Bloque 1, añadir Watershed a U-Net++ fue crítico para separar instancias celulares tocantes. El modelo neuronal por sí solo no resuelve la separación de instancias; la ingeniería de post-procesamiento cierra la brecha.</p></li>
 </ul>
 <ol class="arabic simple" start="3">
 <li><p>Métodos clásicos siguen siendo competitivos en problemas bien definidos</p></li>
 </ol>
 <ul class="simple">
-<li><p>TF-IDF + XGBoost (F1=0.96) casi iguala a RoBERTa (F1=0.97) con una fracción del costo computacional. Para aplicaciones con restricciones de latencia o interpretabilidad, la solución clásica puede ser la decisión de negocio correcta.</p></li>
+<li><p>TF-IDF + XGBoost (F1=0.96) casi iguala a RoBERTa (F1=0.7801) con una fracción del costo computacional. Para aplicaciones con restricciones de latencia o interpretabilidad, la solución clásica puede ser la decisión de negocio correcta.</p></li>
 </ul>
 <ol class="arabic simple" start="4">
 <li><p>La arquitectura debe estar alineada con la naturaleza del problema</p></li>
 </ol>
 <ul class="simple">
-<li><p>SAM falla (Dice=0.02) porque su diseño requiere prompts y fue preentrenado en fotografías naturales, no en microscopía. FastText queda último porque ignora el orden de palabras, crítico en textos con estructura semántica.”),</p></li>
+<li><p>SAM falla (Dice=0.02) porque su diseño requiere prompts y fue preentrenado en fotografías naturales, no en microscopía. TF-IDF+XGBoost queda último porque ignora el orden de palabras, crítico en textos con estructura semántica.</p></li>
 </ul>
 <ol class="arabic simple" start="5">
 <li><p>El desbalance de clases es el mayor riesgo operacional</p></li>
@@ -928,12 +928,12 @@ Métrica principal (mejor)                     Dice = 0.7631                    
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="modelos_nlp.html"
+       href="modelos_nlp_nu.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bloque 2: Modelos Lenguaje Natural (NLP)</p>
+        <p class="prev-next-title">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</p>
       </div>
     </a>
 </div></div>
