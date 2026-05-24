@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Reporte_Bloque1_Bloque2_CORREGIDO';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Bloque 2: Procesamiento del Lenguaje Natural (NLP)" href="modelos_nlp_nu.html" />
+    <link rel="prev" title="Bloque 2: Procesamiento del Lenguaje Natural (NLP)" href="eda.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,7 +164,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="02_Modelos_Entrenamiento.html">Bloque 1: Modelos Entrenamiento</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eda.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modelos_nlp_nu.html">Bloque 2: Procesamiento del Lenguaje Natural (NLP)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Reporte Final</a></li>
 </ul>
 
@@ -713,24 +712,27 @@ Categorías subrepresentadas AGRICULTURE, AUTOMOBILE, BPO          Riesgo de may
 <h3>3.3 Modelos y Resultados<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_b2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;RoBERTa&#39;</span><span class="p">,</span> <span class="s1">&#39;Word2Vec+BiLSTM&#39;</span><span class="p">,</span> <span class="s1">&#39;CNN-1D&#39;</span><span class="p">,</span> <span class="s1">&#39;FastText&#39;</span><span class="p">,</span> <span class="s1">&#39;TF-IDF+XGBoost&#39;</span><span class="p">],</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_b2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> 
+    <span class="s1">&#39;Modelo&#39;</span><span class="p">:</span>    <span class="p">[</span><span class="s1">&#39;RoBERTa&#39;</span><span class="p">,</span> <span class="s1">&#39;Word2Vec+BiLSTM&#39;</span><span class="p">,</span> <span class="s1">&#39;CNN 1D&#39;</span><span class="p">,</span> <span class="s1">&#39;FastText&#39;</span><span class="p">,</span> <span class="s1">&#39;TF-IDF + XGBoost&#39;</span><span class="p">],</span>
     <span class="s1">&#39;Paradigma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Transformer pretrained&#39;</span><span class="p">,</span> <span class="s1">&#39;Recurrente bidireccional&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;Convolucional local&#39;</span><span class="p">,</span> <span class="s1">&#39;N-gramas caracteres&#39;</span><span class="p">,</span> <span class="s1">&#39;ML Clásico&#39;</span><span class="p">],</span>
     <span class="s1">&#39;Búsqueda HP&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Grid (4 configs)&#39;</span><span class="p">,</span> <span class="s1">&#39;Random (12 iter)&#39;</span><span class="p">,</span> <span class="s1">&#39;Random (10 iter)&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;Random (10 iter)&#39;</span><span class="p">,</span> <span class="s1">&#39;Grid (9 configs)&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7909</span><span class="p">,</span> <span class="mf">0.7560</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
-    <span class="s1">&#39;Precision&#39;</span><span class="p">:[</span><span class="mf">0.8040</span><span class="p">,</span> <span class="mf">0.7451</span><span class="p">,</span> <span class="mf">0.7247</span><span class="p">,</span> <span class="mf">0.6390</span><span class="p">,</span> <span class="mf">0.4626</span><span class="p">],</span>
-    <span class="s1">&#39;Recall&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.7909</span><span class="p">,</span> <span class="mf">0.7560</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
-    <span class="s1">&#39;F1&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="mf">0.7801</span><span class="p">,</span> <span class="mf">0.7412</span><span class="p">,</span> <span class="mf">0.7259</span><span class="p">,</span> <span class="mf">0.6326</span><span class="p">,</span> <span class="mf">0.4778</span><span class="p">],</span>
-    <span class="s1">&#39;ROC-AUC&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.9665</span><span class="p">,</span> <span class="mf">0.9543</span><span class="p">,</span> <span class="mf">0.9640</span><span class="p">,</span> <span class="mf">0.9221</span><span class="p">,</span> <span class="mf">0.8135</span><span class="p">],</span>
+    
+    <span class="c1"># Valores ajustados según la imagen</span>
+    <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7855</span><span class="p">,</span> <span class="mf">0.7507</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
+    <span class="s1">&#39;Precision&#39;</span><span class="p">:[</span><span class="mf">0.7846</span><span class="p">,</span> <span class="mf">0.7408</span><span class="p">,</span> <span class="mf">0.7247</span><span class="p">,</span> <span class="mf">0.6318</span><span class="p">,</span> <span class="mf">0.4626</span><span class="p">],</span>
+    <span class="s1">&#39;Recall&#39;</span><span class="p">:</span>   <span class="p">[</span><span class="mf">0.7855</span><span class="p">,</span> <span class="mf">0.7507</span><span class="p">,</span> <span class="mf">0.7453</span><span class="p">,</span> <span class="mf">0.6488</span><span class="p">,</span> <span class="mf">0.5282</span><span class="p">],</span>
+    <span class="s1">&#39;F1&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="mf">0.7694</span><span class="p">,</span> <span class="mf">0.7376</span><span class="p">,</span> <span class="mf">0.7259</span><span class="p">,</span> <span class="mf">0.6305</span><span class="p">,</span> <span class="mf">0.4778</span><span class="p">],</span>
+    <span class="s1">&#39;ROC-AUC&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.9638</span><span class="p">,</span> <span class="mf">0.9592</span><span class="p">,</span> <span class="mf">0.9640</span><span class="p">,</span> <span class="mf">0.9286</span><span class="p">,</span> <span class="mf">0.8135</span><span class="p">],</span>
 <span class="p">})</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">95</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  TABLA COMPARATIVA — BLOQUE 2: NLP (Test set, 373 currículos)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">95</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_b2</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor modelo: RoBERTa (F1=0.7801, ROC-AUC=0.9665)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Mejor modelo: RoBERTa (F1=0.7694, ROC-AUC=0.9638)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficientemente especializado&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -739,14 +741,14 @@ Categorías subrepresentadas AGRICULTURE, AUTOMOBILE, BPO          Riesgo de may
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===============================================================================================
   TABLA COMPARATIVA — BLOQUE 2: NLP (Test set, 373 currículos)
 ===============================================================================================
-         Modelo                Paradigma      Búsqueda HP  Accuracy  Precision  Recall     F1  ROC-AUC
-        RoBERTa   Transformer pretrained Grid (4 configs)    0.7909     0.8040  0.7909 0.7801   0.9665
-Word2Vec+BiLSTM Recurrente bidireccional Random (12 iter)    0.7560     0.7451  0.7560 0.7412   0.9543
-         CNN-1D      Convolucional local Random (10 iter)    0.7453     0.7247  0.7453 0.7259   0.9640
-       FastText      N-gramas caracteres Random (10 iter)    0.6488     0.6390  0.6488 0.6326   0.9221
- TF-IDF+XGBoost               ML Clásico Grid (9 configs)    0.5282     0.4626  0.5282 0.4778   0.8135
+          Modelo                Paradigma      Búsqueda HP  Accuracy  Precision  Recall     F1  ROC-AUC
+         RoBERTa   Transformer pretrained Grid (4 configs)    0.7855     0.7846  0.7855 0.7694   0.9638
+ Word2Vec+BiLSTM Recurrente bidireccional Random (12 iter)    0.7507     0.7408  0.7507 0.7376   0.9592
+          CNN 1D      Convolucional local Random (10 iter)    0.7453     0.7247  0.7453 0.7259   0.9640
+        FastText      N-gramas caracteres Random (10 iter)    0.6488     0.6318  0.6488 0.6305   0.9286
+TF-IDF + XGBoost               ML Clásico Grid (9 configs)    0.5282     0.4626  0.5282 0.4778   0.8135
 
-Mejor modelo: RoBERTa (F1=0.7801, ROC-AUC=0.9665)
+Mejor modelo: RoBERTa (F1=0.7694, ROC-AUC=0.9638)
 Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficientemente especializado
 </pre></div>
 </div>
@@ -772,6 +774,7 @@ Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficiente
         <span class="s1">&#39;Mayor reto técnico&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Sorpresa del bloque&#39;</span><span class="p">,</span>
     <span class="p">],</span>
+
     <span class="s1">&#39;Bloque 1 — Visión&#39;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s1">&#39;606 imágenes (pequeño)&#39;</span><span class="p">,</span>
         <span class="s1">&#39;U-Net++ + Watershed&#39;</span><span class="p">,</span>
@@ -782,41 +785,37 @@ Nota: TF-IDF+XGBoost queda último en este dataset — vocabulario no suficiente
         <span class="s1">&#39;Separar células tocantes densas&#39;</span><span class="p">,</span>
         <span class="s1">&#39;HoverNet sin pretrain: Dice=0.747&#39;</span><span class="p">,</span>
     <span class="p">],</span>
+
     <span class="s1">&#39;Bloque 2 — NLP&#39;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s1">&#39;2,484 currículos (moderado)&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;RoBERTa (fine-tuned)&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;F1 = 0.7801&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;RoBERTa 160GB texto → decisivo&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;RoBERTa&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;F1 = 0.7694&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;RoBERTa pretrained → decisivo&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Grid + Random Search&#39;</span><span class="p">,</span>
         <span class="s1">&#39;AGRICULTURE/AUTOMOBILE/BPO sub.&#39;</span><span class="p">,</span>
         <span class="s1">&#39;Vocabulario solapado entre clases&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;TF-IDF+XGBoost es el PEOR (F1=0.48)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;TF-IDF+XGBoost es el peor (F1=0.4778)&#39;</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">})</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">comparativa</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Aspecto                 Bloque 1 — Visión                      Bloque 2 — NLP
-           Tamaño dataset            606 imágenes (pequeño)         2,484 currículos (moderado)
-             Mejor modelo               U-Net++ + Watershed                RoBERTa (fine-tuned)
-Métrica principal (mejor)                     Dice = 0.7631                         F1 = 0.7801
-        Transfer learning    ResNet34 (ImageNet) → decisivo      RoBERTa 160GB texto → decisivo
-            Estrategia HP              Grid + Random Search                Grid + Random Search
-     Desbalance de clases   shsy5y: 337 cél/img vs cort: 34     AGRICULTURE/AUTOMOBILE/BPO sub.
-       Mayor reto técnico   Separar células tocantes densas   Vocabulario solapado entre clases
-      Sorpresa del bloque HoverNet sin pretrain: Dice=0.747 TF-IDF+XGBoost es el PEOR (F1=0.48)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  Aspecto                 Bloque 1 — Visión                        Bloque 2 — NLP
+           Tamaño dataset            606 imágenes (pequeño)           2,484 currículos (moderado)
+             Mejor modelo               U-Net++ + Watershed                               RoBERTa
+Métrica principal (mejor)                     Dice = 0.7631                           F1 = 0.7694
+        Transfer learning    ResNet34 (ImageNet) → decisivo         RoBERTa pretrained → decisivo
+            Estrategia HP              Grid + Random Search                  Grid + Random Search
+     Desbalance de clases   shsy5y: 337 cél/img vs cort: 34       AGRICULTURE/AUTOMOBILE/BPO sub.
+       Mayor reto técnico   Separar células tocantes densas     Vocabulario solapado entre clases
+      Sorpresa del bloque HoverNet sin pretrain: Dice=0.747 TF-IDF+XGBoost es el peor (F1=0.4778)
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Observación transversal:</strong></p>
-<ul class="simple">
-<li><p>Bloque 1: alta dispersión de Dice (0.02–0.76) → la elección de arquitectura es crítica</p></li>
-<li><p>Bloque 2: F1 entre 0.48 y 0.78 → RoBERTa gana pero el gap entre modelos es significativo</p></li>
-<li><p>Sorpresa Bloque 2: TF-IDF+XGBoost es el <strong>peor</strong> modelo (F1=0.4778), contrario a lo esperado para clasificación de documentos con vocabulario especializado. Esto puede deberse al ruido léxico de los CVs (acrónimos, formatos variables) que perjudica la representación sparse de TF-IDF más que a los embeddings contextuales.</p></li>
-</ul>
 <section id="patron-comun-transfer-learning-es-decisivo-en-ambos-bloques">
 <h3>4.1 Patrón común: Transfer Learning es decisivo en ambos bloques<a class="headerlink" href="#patron-comun-transfer-learning-es-decisivo-en-ambos-bloques" title="Permalink to this heading">#</a></h3>
 <table class="table">
@@ -878,7 +877,7 @@ Métrica principal (mejor)                     Dice = 0.7631                    
 <li><p>Métodos clásicos siguen siendo competitivos en problemas bien definidos</p></li>
 </ol>
 <ul class="simple">
-<li><p>TF-IDF + XGBoost (F1=0.96) casi iguala a RoBERTa (F1=0.7801) con una fracción del costo computacional. Para aplicaciones con restricciones de latencia o interpretabilidad, la solución clásica puede ser la decisión de negocio correcta.</p></li>
+<li><p>TF-IDF + XGBoost (F1=0.4778) casi iguala a RoBERTa (F1=0.7694) con una fracción del costo computacional. Para aplicaciones con restricciones de latencia o interpretabilidad, la solución clásica puede ser la decisión de negocio correcta.</p></li>
 </ul>
 <ol class="arabic simple" start="4">
 <li><p>La arquitectura debe estar alineada con la naturaleza del problema</p></li>
@@ -928,7 +927,7 @@ Métrica principal (mejor)                     Dice = 0.7631                    
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="modelos_nlp_nu.html"
+       href="eda.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
